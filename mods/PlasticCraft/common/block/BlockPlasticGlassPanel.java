@@ -3,21 +3,19 @@ package mods.PlasticCraft.common.block;
 import java.util.List;
 
 import mods.PlasticCraft.common.PlasticCraft;
-import net.minecraft.block.BlockBreakable;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockPlasticGlass extends BlockBreakable  {
+public class BlockPlasticGlassPanel extends BlockPlasticPanel  {
 
-	public BlockPlasticGlass(int par1, Material par2Material,boolean shouldSideRender ) {
-		super(par1, "glass", Material.glass,shouldSideRender);
+	public BlockPlasticGlassPanel(int par1, String par2Str, String par3Str, Material par4Material, boolean par5) {
+		super(par1, par3Str, par3Str, par4Material, par5);
 		this.setCreativeTab(PlasticCraft.PlasticCaft);
 		this.setLightOpacity(0);
 		this.setBurnProperties(this.blockID, 5, 10);
@@ -29,13 +27,6 @@ public class BlockPlasticGlass extends BlockBreakable  {
 	public Icon getIcon(int par1, int par2) {
 		return super.getIcon(par1, par2);
 	}
-
-	@Override
-    public int getLightOpacity(World world, int x, int y, int z)
-    {
-		if(world.getBlockMetadata(x, y, z)==2) return 255;
-		return 0;
-    }
 
 	@Override
 	public int getLightValue(final IBlockAccess world, final int x, final int y, final int z) {
@@ -54,7 +45,7 @@ public class BlockPlasticGlass extends BlockBreakable  {
 	public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List) {
 		// メタデータでブロックを追加する
 		// par3List.add(new ItemStack(par1, 1, <メタデータ>));
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < 2; i++) {
 			par3List.add(new ItemStack(par1, 1, i));
 		}
 	}

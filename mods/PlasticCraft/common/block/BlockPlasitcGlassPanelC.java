@@ -12,9 +12,9 @@ import net.minecraft.world.IBlockAccess;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BlockPlasitcPanels extends BlockPlasticPanel  {
+public class BlockPlasitcGlassPanelC extends BlockPlasticPanel  {
 
-	public BlockPlasitcPanels(int par1, String par2Str, String par3Str, Material par4Material, boolean par5) {
+	public BlockPlasitcGlassPanelC(int par1, String par2Str, String par3Str, Material par4Material, boolean par5) {
 		super(par1, par3Str, par3Str, par4Material, par5);
 		this.setCreativeTab(PlasticCraft.PlasticCaft);
 		this.setLightOpacity(0);
