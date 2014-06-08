@@ -11,15 +11,6 @@ public class ItemPlastic1 extends Item
 	public ItemPlastic1(int par1)
 	{
 		super(par1);
-		//メタデータ毎のスタックサイズ定義
-		//ItemStack型変数itemstackで自信定義
-		ItemStack itemstack = new ItemStack(this);
-		//後if文にてダメージ値で分岐
-		if(itemstack.getItemDamage()==0){
-		maxStackSize = 1;
-		}else{
-			maxStackSize=64;
-		}
 	}
 
 	@Override
@@ -36,6 +27,16 @@ public class ItemPlastic1 extends Item
             par3List.add(new ItemStack(par1, 1, i));
         }
     }
+
+	@Override
+	public int getItemStackLimit( ItemStack items ) {
+		if(items.getItemDamage()==0){
+			return 1;
+		}else{
+			return 64;
+		}
+	}
+
 
 
 	@Override
