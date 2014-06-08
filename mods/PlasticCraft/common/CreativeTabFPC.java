@@ -23,7 +23,7 @@ public class CreativeTabFPC extends CreativeTabs {
 	@SideOnly(Side.CLIENT)
 	public String getTranslatedTabLabel()
 	{
-		return "MagicItems";
+		return "Plastic Craft";
 	}
 
 }
