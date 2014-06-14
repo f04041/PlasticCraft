@@ -12,6 +12,7 @@ import net.minecraft.world.World;
 
 public class ItemPlastic1 extends Item
 {
+	public int dur1,dur2,dur3;
 	public ItemPlastic1(int par1)
 	{
 		super(par1);
@@ -36,15 +37,28 @@ public class ItemPlastic1 extends Item
     {
     	int i1 = par3World.getBlockId(par4, par5, par6);
     	Block block = Block.wood;
-    	par1ItemStack.stackTagCompound = new NBTTagCompound();
-    	par1ItemStack.stackTagCompound.setInteger("dur1", 12);
-    	par1ItemStack.stackTagCompound.setInteger("dur2", 120);
-    	par1ItemStack.stackTagCompound.setInteger("dur3", 128);
+    	NBTTagCompound fnbt1 = par1ItemStack.getTagCompound();
+    	if(fnbt1 == null)
+		{
+    		fnbt1 = new NBTTagCompound();
+			par1ItemStack.setTagCompound(fnbt1);
+		}
+    	fnbt1.setInteger("dur1", 12);
+    	fnbt1.setInteger("dur2", 120);
+    	fnbt1.setInteger("dur3", 128);
+    	fnbt1.setBoolean("mode", false);
 
 
-    	if(i1 == Block.sand.blockID && par1ItemStack.getItemDamage() == 0){
-
-    		--par1ItemStack.stackSize;
+    	if(i1 == Block.wood.blockID && par1ItemStack.getItemDamage() == 0&&par2EntityPlayer.inventory.hasItem(Item.bowlEmpty.itemID)){
+   		 if(dur1==0){
+			 --par1ItemStack.stackSize;
+		 }else{
+    		ItemStack item = new ItemStack(Item.bowlEmpty);
+    		 dur1 = fnbt1.getInteger("dur1");
+    		 dur1=dur1-1;
+    		--item.stackSize;
+    		fnbt1.setInteger("dur1",12);
+		 }
     		return true;
     	}else{
     		return false;
@@ -60,8 +74,16 @@ public class ItemPlastic1 extends Item
 		}
 	}
 
-
-
+    @Override
+    public int getDisplayDamage(ItemStack stack){
+    	if(stack.getItemDamage()==0){
+    		NBTTagCompound fnbt1 = stack.getTagCompound();
+    		return dur1;
+    	}else{
+    		return 0;
+    	}
+    }
+	
 	@Override
 	public String getUnlocalizedName(ItemStack par1ItemStack) {
 		return super.getUnlocalizedName() + "_" + par1ItemStack.getItemDamage();
